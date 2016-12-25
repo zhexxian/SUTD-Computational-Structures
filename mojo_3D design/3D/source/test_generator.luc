@@ -1,0 +1,11 @@
+module test_generator (
+    input value[8],
+    output out1[4],
+    output out2[4]
+  ) {
+
+  always {
+    out1 = value[3:0];
+    out2 = value[7:4];
+  }
+}

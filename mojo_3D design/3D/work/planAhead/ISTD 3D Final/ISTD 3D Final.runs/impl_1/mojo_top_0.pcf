@@ -1,0 +1,64 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Thu Oct 08 21:47:04 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "output_set3[4]" LOCATE = SITE "P92" LEVEL 1;
+COMP "output_set3[5]" LOCATE = SITE "P93" LEVEL 1;
+COMP "output_set3[6]" LOCATE = SITE "P87" LEVEL 1;
+COMP "output_set3[7]" LOCATE = SITE "P88" LEVEL 1;
+COMP "io_seg[0]" LOCATE = SITE "P5" LEVEL 1;
+COMP "io_seg[1]" LOCATE = SITE "P8" LEVEL 1;
+COMP "io_seg[2]" LOCATE = SITE "P144" LEVEL 1;
+COMP "clk" LOCATE = SITE "P56" LEVEL 1;
+COMP "io_seg[3]" LOCATE = SITE "P143" LEVEL 1;
+COMP "io_seg[4]" LOCATE = SITE "P2" LEVEL 1;
+COMP "io_seg[5]" LOCATE = SITE "P6" LEVEL 1;
+COMP "input_pin[0]" LOCATE = SITE "P120" LEVEL 1;
+COMP "io_seg[6]" LOCATE = SITE "P1" LEVEL 1;
+COMP "input_pin[1]" LOCATE = SITE "P121" LEVEL 1;
+COMP "io_seg[7]" LOCATE = SITE "P141" LEVEL 1;
+COMP "input_pin[2]" LOCATE = SITE "P118" LEVEL 1;
+COMP "input_pin[3]" LOCATE = SITE "P119" LEVEL 1;
+COMP "input_pin[4]" LOCATE = SITE "P116" LEVEL 1;
+COMP "io_sel[0]" LOCATE = SITE "P9" LEVEL 1;
+COMP "io_sel[1]" LOCATE = SITE "P10" LEVEL 1;
+COMP "io_sel[2]" LOCATE = SITE "P7" LEVEL 1;
+COMP "io_sel[3]" LOCATE = SITE "P12" LEVEL 1;
+COMP "rst_n" LOCATE = SITE "P38" LEVEL 1;
+COMP "output_set1[0]" LOCATE = SITE "P84" LEVEL 1;
+COMP "output_set1[1]" LOCATE = SITE "P85" LEVEL 1;
+COMP "output_set1[2]" LOCATE = SITE "P82" LEVEL 1;
+COMP "output_set1[3]" LOCATE = SITE "P83" LEVEL 1;
+COMP "output_set2[0]" LOCATE = SITE "P15" LEVEL 1;
+COMP "output_set2[1]" LOCATE = SITE "P16" LEVEL 1;
+COMP "output_set2[2]" LOCATE = SITE "P17" LEVEL 1;
+COMP "output_set2[3]" LOCATE = SITE "P21" LEVEL 1;
+COMP "output_set3[0]" LOCATE = SITE "P97" LEVEL 1;
+COMP "output_set3[1]" LOCATE = SITE "P98" LEVEL 1;
+COMP "output_set3[2]" LOCATE = SITE "P94" LEVEL 1;
+COMP "output_set3[3]" LOCATE = SITE "P95" LEVEL 1;
+TIMEGRP clk = BEL "clk_BUFGP/BUFG" BEL "waver/M_ctr_q_19" BEL
+        "waver/M_ctr_q_20" BEL "waver/M_ctr_q_21" BEL "waver/M_ctr_q_22" BEL
+        "waver/M_ctr_q_23" BEL "waver/M_ctr_q_24" BEL
+        "test_cases_ctr/M_ctr_q_0" BEL "test_cases_ctr/M_ctr_q_1" BEL
+        "test_cases_ctr/M_ctr_q_4" BEL "test_cases_ctr/M_ctr_q_2" BEL
+        "test_cases_ctr/M_ctr_q_3" BEL "test_cases_ctr/M_ctr_q_5" BEL
+        "test_cases_ctr/M_ctr_q_7" BEL "test_cases_ctr/M_ctr_q_8" BEL
+        "test_cases_ctr/M_ctr_q_11" BEL "test_cases_ctr/M_ctr_q_9" BEL
+        "test_cases_ctr/M_ctr_q_10" BEL "test_cases_ctr/M_ctr_q_12" BEL
+        "test_cases_ctr/M_ctr_q_13" BEL "test_cases_ctr/M_ctr_q_6" BEL
+        "test_cases_ctr/M_ctr_q_10_1" BEL "test_cases_ctr/M_ctr_q_7_1" BEL
+        "test_cases_ctr/M_ctr_q_11_1" BEL "test_cases_ctr/M_ctr_q_10_2" BEL
+        "test_cases_ctr/M_ctr_q_8_1" BEL "ctr/M_ctr_q_0" BEL "ctr/M_ctr_q_1"
+        BEL "ctr/M_ctr_q_2" BEL "ctr/M_ctr_q_3" BEL "ctr/M_ctr_q_4" BEL
+        "ctr/M_ctr_q_5" BEL "ctr/M_ctr_q_6" BEL "ctr/M_ctr_q_7" BEL
+        "ctr/M_ctr_q_8" BEL "ctr/M_ctr_q_9" BEL "ctr/M_ctr_q_10" BEL
+        "ctr/M_ctr_q_11" BEL "ctr/M_ctr_q_12" BEL "ctr/M_ctr_q_13" BEL
+        "ctr/M_ctr_q_14" BEL "ctr/M_ctr_q_15" BEL "ctr/M_ctr_q_16" BEL
+        "ctr/M_ctr_q_17" BEL "ctr/M_ctr_q_18" BEL "reset_cond/M_stage_q_3" BEL
+        "reset_cond/M_stage_q_2" BEL "reset_cond/M_stage_q_1" BEL
+        "reset_cond/M_stage_q_0" BEL "edge_detector/M_last_q";
+TS_clk = PERIOD TIMEGRP "clk" 50 MHz HIGH 50%;
+SCHEMATIC END;
+

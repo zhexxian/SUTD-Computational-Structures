@@ -1,0 +1,24 @@
+NET "output_set1<0>" LOC = P84 | IOSTANDARD = LVTTL;
+NET "output_set1<1>" LOC = P85 | IOSTANDARD = LVTTL;
+NET "output_set1<2>" LOC = P82 | IOSTANDARD = LVTTL;
+NET "output_set1<3>" LOC = P83 | IOSTANDARD = LVTTL;
+
+NET "output_set2<0>" LOC = P15 | IOSTANDARD = LVTTL;
+NET "output_set2<1>" LOC = P16 | IOSTANDARD = LVTTL;
+NET "output_set2<2>" LOC = P17 | IOSTANDARD = LVTTL;
+NET "output_set2<3>" LOC = P21 | IOSTANDARD = LVTTL;
+
+NET "output_set3<0>"  LOC = P97 | IOSTANDARD = LVTTL;
+NET "output_set3<1>"  LOC = P98 | IOSTANDARD = LVTTL;
+NET "output_set3<2>" LOC = P94 | IOSTANDARD = LVTTL;
+NET "output_set3<3>" LOC = P95 | IOSTANDARD = LVTTL;
+NET "output_set3<4>" LOC = P92 | IOSTANDARD = LVTTL;
+NET "output_set3<5>" LOC = P93 | IOSTANDARD = LVTTL;
+NET "output_set3<6>" LOC = P87 | IOSTANDARD = LVTTL;
+NET "output_set3<7>" LOC = P88 | IOSTANDARD = LVTTL;
+
+NET "input_pin<0>" LOC = P120 | IOSTANDARD = LVTTL | PULLDOWN;
+NET "input_pin<1>" LOC = P121 | IOSTANDARD = LVTTL | PULLDOWN;
+NET "input_pin<2>" LOC = P118 | IOSTANDARD = LVTTL | PULLDOWN;
+NET "input_pin<3>" LOC = P119 | IOSTANDARD = LVTTL | PULLDOWN;
+NET "input_pin<4>" LOC = P116 | IOSTANDARD = LVTTL | PULLDOWN;

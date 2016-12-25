@@ -1,0 +1,10 @@
+module adder4bit (
+    input in1[4],
+    input in2[4],
+    output out[5]
+  ) {
+
+  always {
+    out = in1 + in2;
+  }
+}

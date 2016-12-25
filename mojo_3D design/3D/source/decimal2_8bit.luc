@@ -1,0 +1,145 @@
+module decimal2_8bit (
+    input a[8],  
+    output out2[4],
+    output out1[4],  
+    output out0[4]
+  ) {
+
+  always {
+    if (a<=9){
+      out2=4b0;
+      out1=4b0;
+      out0=a[3:0];
+    }
+    else if (a>9 && a<=19){
+      out2=4b0;
+      out1=4b1;
+      out0=a-10;
+    }
+    else if (a>19 && a<=29){
+      out2=4b0;
+      out1=4b10;
+      out0=a-20;
+    }
+    else if (a>29 && a<=39){
+      out2=4b0;
+      out1=4b11;
+      out0=a-30;
+    }
+    else if (a>39 && a<=49){
+      out2=4b0;
+      out1=4b100;
+      out0=a-40;
+    }
+    else if (a>49 && a<=59){
+      out2=4b0;
+      out1=4b101;
+      out0=a-50;
+    }
+    else if (a>59 && a<=69){
+      out2=4b0;
+      out1=4b110;
+      out0=a-60;
+    }
+    else if (a>69 && a<=79){
+      out2=4b0;
+      out1=4b111;
+      out0=a-70;
+    }
+    else if (a>79 && a<=89){
+      out2=4b0;
+      out1=4b1000;
+      out0=a-80;
+    }
+    else if (a>89 && a<=99){
+      out2=4b0;
+      out1=4b1001;
+      out0=a-90;
+    }
+    else if (a>99 && a<=109){
+      out2=4b1;
+      out1=4b0;
+      out0=a-100;
+    }
+     else if (a>109 && a<=119){
+      out2=4b1;
+      out1=4b1;
+      out0=a-110;
+    }
+    else if (a>119 && a<=129){
+      out2=4b1;
+      out1=4b10;
+      out0=a-120;
+    }
+    else if (a>129 && a<=139){
+      out2=4b1;
+      out1=4b11;
+      out0=a-130;
+    }
+    else if (a>139 && a<=149){
+      out2=4b1;
+      out1=4b100;
+      out0=a-140;
+    }
+    else if (a>149 && a<=159){
+      out2=4b1;
+      out1=4b101;
+      out0=a-150;
+    }
+    else if (a>159 && a<=169){
+      out2=4b1;
+      out1=4b110;
+      out0=a-160;
+    }
+    else if (a>169 && a<=179){
+      out2=4b1;
+      out1=4b111;
+      out0=a-170;
+    }
+    else if (a>179 && a<=189){
+      out2=4b1;
+      out1=4b1000;
+      out0=a-180;
+    }
+    else if (a>189 && a<=199){
+      out2=4b1;
+      out1=4b1001;
+      out0=a-190;
+    }
+    else if (a>199 && a<=209){
+      out2=4b10;
+      out1=4b0;
+      out0=a-200;
+    }
+    else if (a>209 && a<=219){
+      out2=4b10;
+      out1=4b1;
+      out0=a-210;
+    }
+    else if (a>219 && a<=229){
+      out2=4b10;
+      out1=4b10;
+      out0=a-220;
+    }
+    else if (a>229 && a<=239){
+      out2=4b10;
+      out1=4b11;
+      out0=a-230;
+    }
+    else if (a>239 && a<=249){
+      out2=4b10;
+      out1=4b100;
+      out0=a-240;
+    }
+    else if (a>249 && a<=259){
+      out2=4b10;
+      out1=4b101;
+      out0=a-250;
+    }
+    else{
+      out2=0;
+      out1=0;
+      out0=0;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+module switchbox (
+    input toggle,  
+    input clk,
+    input rst,
+    output out
+  ) {
+  
+  .clk(clk){
+    edge_detector edge_detector(#RISE(0), #FALL(1));
+    button_conditioner button_cond;
+    .rst(rst){
+      fsm state(#INIT(OFF))={ON, OFF};
+    //  dff buffer;
+    }
+  }
+  always {
+    button_cond.in=toggle;
+    edge_detector.in=button_cond.out;
+    
+    case(state.q){
+      state.ON:
+        if (edge_detector.out){
+          out=0;
+          state.d=state.OFF;
+        }
+        else{
+          out=1;
+        }
+      state.OFF:
+        if (edge_detector.out){
+          out=1;
+          state.d=state.ON;
+        }
+        else{
+          out=0;
+        }
+    }
+    
+  }
+}

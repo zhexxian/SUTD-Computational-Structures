@@ -1,0 +1,118 @@
+module mojo_top (
+    input clk,              // 50MHz clock
+    input rst_n,            // reset button (active low)
+    output io_seg [8],      // 7-segment LEDs on IO Shield
+    output io_sel [4],      // Digit select on IO Shield
+    input input_pin [5],    // Result from physical adder
+    output output_set1 [4], // 1st 4 bit number for output to physical adder
+    output output_set2 [4], // 2nd 4 bit number for output to physical adder
+    output output_set3 [8]
+  ) {
+  
+  sig rst;                  // reset signal
+  
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    edge_detector edge_detector (#RISE(1), #FALL(0));
+
+    .rst(rst) {
+      counter ctr (#SIZE(2), #DIV(17));
+      special_counter test_cases_ctr (#SIZE(8), #DIV(6), #TOP(8b11111111));
+      wave waver;
+
+    }
+  }
+
+  adder4bit adder;
+  test_generator test; 
+  compare compare; 
+  
+  seven_seg sevenseg2; 
+  seven_seg sevenseg1;
+  seven_seg sevenseg0;
+  
+  decimal2_8bit decsplit_new;
+  
+  always {
+  
+    decsplit_new.a=test_cases_ctr.value;
+  
+    sevenseg2.char=decsplit_new.out2; // connect to 7-segment encoder input
+    sevenseg1.char=decsplit_new.out1;      
+    sevenseg0.char=decsplit_new.out0;
+    
+    reset_cond.in = ~rst_n;   // input raw inverted reset signal
+    rst = reset_cond.out;     // conditioned reset
+    
+    edge_detector.in = ctr.value[0]; 
+    test_cases_ctr.inc = edge_detector.out;
+    
+
+    
+        
+
+    
+    test.value = test_cases_ctr.value; // Generating 8 bit input from special_counter
+    output_set1 = test.out1;           // Generating outputs to physical adder
+    output_set2 = test.out2;
+    adder.in1 = test.out1;             // 2 x 4 bit inputs for digital adder
+    adder.in2 = test.out2;
+    compare.in1 = adder.out;           // Result from digital adder
+    compare.in2 = input_pin;           // Result from physical adder
+    test_cases_ctr.ok = compare.out;   // Comparing results from physical and digital adders: 1 if same
+
+        
+    
+    if (compare.out == 1)
+    {
+      case(ctr.value){
+      0:
+        io_seg = ~sevenseg0.segs;          // set input of seven seg from encoder output
+        io_sel = ~4b1;
+      1: 
+        io_seg = ~sevenseg1.segs;
+        io_sel = ~4b10;
+      2:
+        io_seg = ~sevenseg2.segs;
+        io_sel = ~4b100;
+      default:
+        io_seg = ~8b0;
+        io_sel = ~4b0;
+      }
+    }
+    else
+    {
+      io_seg = ~8b01000000;
+      io_sel = 4b0;
+    }
+       
+    if (test_cases_ctr.full == 1) { // Halts when all 256 cases are tested.
+      output_set1=waver.out;
+      output_set2=waver.out;
+      output_set3=waver.out;
+      test_cases_ctr.inc = 0;
+      case(ctr.value){
+      0:
+        io_seg = ~8b11011110;          
+        io_sel = ~4b1;
+      1: 
+        io_seg = ~8b01010100;
+        io_sel = ~4b10;
+      2:
+        io_seg = ~8b01111001;
+        io_sel = ~4b100;
+      default:
+        io_seg = ~8b0;
+        io_sel = ~4b0;
+      }
+     
+      
+    } else { 
+      output_set3 = input_pin; 
+      }
+
+    //io_led = io_dip;   // connect the DIP switches to the LEDs
+  }    
+}

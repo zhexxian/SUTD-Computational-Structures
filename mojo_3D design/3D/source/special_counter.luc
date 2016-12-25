@@ -1,0 +1,44 @@
+module special_counter #(
+  SIZE = 8 : SIZE >0,
+  DIV = 0 : DIV >= 0,
+  TOP = 0: TOP >= 0, // max value, 0 = none
+  UP = 1: UP == 1 || UP == 0 // direction to count, 1 for up, 0 for down
+  )(
+    input clk,  
+    input rst,
+    input ok,
+    input inc,
+    output value[SIZE],
+    output full
+  ) {
+
+ .clk(clk), .rst(rst) {
+  dff ctr[SIZE+DIV];
+  }
+  
+  const MAX_VALUE = c{TOP, DIVx{1}}; // value when maxed out
+  
+  always {
+    value = ctr.q[SIZE+DIV-1-:SIZE]; // set the output
+    
+    if (UP) {
+      if (inc && ok) {
+        if (TOP != 0 && ctr.q == MAX_VALUE) {
+           ctr.d = 0; // reset
+           full = 1;
+        }
+        else {
+           ctr.d = ctr.q + 1; //increase
+           full = 0;
+        }
+      }
+    } else { // down counter
+        ctr.d = ctr.q - 1; // decrease
+        if (TOP != 0 && ctr.q == 0) {
+          ctr.d = MAX_VALUE; // reset to top
+      }
+    }
+    
+  }
+}
+      
